@@ -64,28 +64,28 @@ type ModalState =
 
 
 const ROLE_HIERARCHY: Record<string, number> = {
-  user: 0,
+  student:0,
   admin: 1,
   super_admin: 2,
 };
 
 const ROLE_VARIANT: Record<Role, "secondary" | "outline" | "default"> = {
-  user: "secondary",
+  student: "secondary",
   admin: "outline",
   super_admin: "default",
 };
 
 // Roles each actor can assign when creating/editing
 const CREATABLE_ROLES: Record<string, Role[]> = {
-  admin: ["user"],
-  super_admin: ["user", "admin", "super_admin"],
+  admin: ["student"],
+  super_admin: ["student", "admin", "super_admin"],
 };
 
 const DEFAULT_FORM: UserFormData = {
   name: "",
   email: "",
   password: "",
-  role: "user",
+  role: "student",
 };
 
 
@@ -222,7 +222,7 @@ function UserForm({
   const setField = (key: keyof UserFormData) => (value: string) =>
     setForm((prev) => ({ ...prev, [key]: value }));
 
-  const availableRoles: Role[] = CREATABLE_ROLES[currentUserRole] ?? ["user"];
+  const availableRoles: Role[] = CREATABLE_ROLES[currentUserRole] ?? ["student"];
 
   const handleSubmit = async () => {
     setLoading(true);
@@ -394,7 +394,7 @@ function AccessControlPage() {
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">All Roles</SelectItem>
-            <SelectItem value="user">User</SelectItem>
+            <SelectItem value="student">Student</SelectItem>
             <SelectItem value="admin">Admin</SelectItem>
             <SelectItem value="super_admin">Super Admin</SelectItem>
           </SelectContent>
